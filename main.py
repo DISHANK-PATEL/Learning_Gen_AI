@@ -34,7 +34,7 @@ st.markdown("""
 with st.sidebar:
     selected = option_menu(
         menu_title="Medi-chain",
-        options=["Chatbot", "Image Captioning", "Embed text", "Ask me anything"],
+        options=["Ask Me Anything", "Image Captioning"],
         menu_icon="robot",
         icons=['chat-dots-fill', 'image-fill', 'textarea-t', 'patch-question-fill'],
         default_index=0
@@ -48,11 +48,11 @@ def translate_role_for_streamlit(user_role):
         return user_role
 
 
-if selected == "Chatbot":
+if selected == "Ask Me Anything":
     model = load_gemini_pro_model()
     if "chat_session" not in st.session_state:
         st.session_state.chat_session = model.start_chat(history=[])
-    st.title("🤖 Chatbot")
+    st.title("🤖 Ask Me Anything")
 
     for message in st.session_state.chat_session.history:
         with st.chat_message(translate_role_for_streamlit(message.role)):
